@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scd-project-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: scd-project-backend
+  template:
+    metadata:
+      labels:
+        app: scd-project-backend
+    spec:
+      containers:
+      - name: backend
+        image: arslanasad/scd-project-backend:latest
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scd-project-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: scd-project-frontend
+  template:
+    metadata:
+      labels:
+        app: scd-project-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: arslanasad/scd-project-frontend:latest
+        ports:
+        - containerPort: 5173
